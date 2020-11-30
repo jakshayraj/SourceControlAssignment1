@@ -31,11 +31,19 @@ namespace SourceControlAssignment1.Models
         [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Incorrect Email Format")]
         [DisplayName("Second Emaild")]
         public string Second_Email { get; set; }
-        [Required(ErrorMessage = "Please enter hire date")]
-        [Display(Name = "Hire Date")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        [CustomHireDate(ErrorMessage = "Hire Date must be less than or equal to Today's Date")]
-        public DateTime HireDate { get; set; }
+
+        private DateTime hireDate;
+
+        public DateTime GetHireDate()
+        {
+            return hireDate;
+        }
+
+        public void SetHireDate(DateTime value)
+        {
+            hireDate = value;
+        }
+
         [Required(ErrorMessage = "Credit card is Required")]
         [CreditCard(ErrorMessage = "Invalid credit card no.")]
         [DisplayName("Credit Card")]
