@@ -10,25 +10,19 @@ namespace SourceControlAssignment1.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        // GET: Home
         public ActionResult Index()
         {
             return View();
         }
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Employee employee)
+        public ActionResult Index(Employee emp)
         {
             if (ModelState.IsValid)
             {
-                RedirectToAction("Index");
+                ModelState.Clear();
+                return View();
             }
-
             return View();
         }
     }
