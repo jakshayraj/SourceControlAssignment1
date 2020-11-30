@@ -8,10 +8,16 @@ namespace SourceControlAssignment1.CustomValidation
 {
     public class CustomHireDate : ValidationAttribute
     {
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            DateTime dateTime = Convert.ToDateTime(value);
-            return dateTime <= DateTime.Now;
+            DateTime CurrentDate = DateTime.Now;
+            string Message = string.Empty;
+            if (Convert.ToDateTime(value) < CurrentDate)
+            {
+                Message = "Hire Date cannot be less than current date";
+                return new ValidationResult(Message);
+            }
+            return ValidationResult.Success;
         }
     }
 }
